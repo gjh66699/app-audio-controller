@@ -46,8 +46,8 @@ Windows 10/11 · Python 3.9+ · MIT
 需要 Windows 10 或 11，Python 3.9 以上。
 
 ```bash
-git clone <this-repo>
-cd 应用音量控制器
+git clone https://github.com/gjh66699/app-volume-controller.git
+cd app-volume-controller
 pip install -r requirements.txt
 ```
 
