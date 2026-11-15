@@ -10,7 +10,7 @@
 #define MyAppName "应用音量控制器"
 #define MyAppVersion "1.0.1"
 #define MyAppPublisher "gjh66699"
-#define MyAppURL "https://github.com/gjh66699/app-volume-controller"
+#define MyAppURL "https://github.com/gjh66699/app-audio-controller"
 #define MyAppExeName "AppVolumeController.exe"
 
 [Setup]

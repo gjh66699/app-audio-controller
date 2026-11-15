@@ -4,7 +4,7 @@
 
 > Windows 上给每个程序单独调音量的轻量小工具。**单文件、一个依赖、零图片资源。**
 
-**[⬇ 下载安装包](https://github.com/gjh66699/app-volume-controller/releases/latest)** · Windows 10/11 · 10 MB · **不需要装 Python**
+**[⬇ 下载安装包](https://github.com/gjh66699/app-audio-controller/releases/latest)** · Windows 10/11 · 10 MB · **不需要装 Python**
 
 ![深色主题](docs/screenshot-dark.png)
 
@@ -31,7 +31,7 @@
 
 ### 方式一：安装包（推荐，不需要 Python）
 
-1. 从 [Releases](https://github.com/gjh66699/app-volume-controller/releases/latest) 下载 `AppVolumeController-Setup-x.y.z.exe`
+1. 从 [Releases](https://github.com/gjh66699/app-audio-controller/releases/latest) 下载 `AppVolumeController-Setup-x.y.z.exe`
 2. 双击安装
 3. 装完桌面和开始菜单都会有快捷方式
 
@@ -41,8 +41,8 @@
 ### 方式二：从源码运行（需要 Python 3.9+）
 
 ```bash
-git clone https://github.com/gjh66699/app-volume-controller.git
-cd app-volume-controller
+git clone https://github.com/gjh66699/app-audio-controller.git
+cd app-audio-controller
 pip install -r requirements.txt
 ```
 

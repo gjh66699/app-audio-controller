@@ -4,7 +4,7 @@
 
 > A lightweight per-app volume mixer for Windows. **One file, one dependency, zero image assets.**
 
-**[⬇ Download installer](https://github.com/gjh66699/app-volume-controller/releases/latest)** · Windows 10/11 · 10 MB · **no Python required**
+**[⬇ Download installer](https://github.com/gjh66699/app-audio-controller/releases/latest)** · Windows 10/11 · 10 MB · **no Python required**
 
 ![Dark theme](docs/screenshot-dark.png)
 
@@ -31,7 +31,7 @@ single thing: **make "how loud is each app" pleasant to look at and quick to adj
 
 ### Option 1: Installer (recommended, no Python needed)
 
-1. Download `AppVolumeController-Setup-x.y.z.exe` from [Releases](https://github.com/gjh66699/app-volume-controller/releases/latest)
+1. Download `AppVolumeController-Setup-x.y.z.exe` from [Releases](https://github.com/gjh66699/app-audio-controller/releases/latest)
 2. Double-click it
 3. Desktop and Start menu shortcuts are created for you
 
@@ -42,8 +42,8 @@ from Settings → Apps or the Start menu entry — it removes the install direct
 ### Option 2: Run from source (Python 3.9+)
 
 ```bash
-git clone https://github.com/gjh66699/app-volume-controller.git
-cd app-volume-controller
+git clone https://github.com/gjh66699/app-audio-controller.git
+cd app-audio-controller
 pip install -r requirements.txt
 ```
 
