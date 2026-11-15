@@ -4,7 +4,7 @@
 
 > A lightweight per-app volume mixer for Windows. **One file, one dependency, zero image assets.**
 
-**[⬇ Download installer](https://github.com/gjh66699/app-volume-controller/releases/latest)** · Windows 10/11 · 18 MB · **no Python required**
+**[⬇ Download installer](https://github.com/gjh66699/app-volume-controller/releases/latest)** · Windows 10/11 · 10 MB · **no Python required**
 
 ![Dark theme](docs/screenshot-dark.png)
 

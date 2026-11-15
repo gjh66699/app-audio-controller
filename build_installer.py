@@ -27,6 +27,16 @@ APP_NAME = "AppVolumeController"
 ISS = os.path.join(HERE, "installer", "app.iss")
 DIST = os.path.join(HERE, "dist", APP_NAME)
 
+# PyInstaller 会顺着 site-packages 把环境里装的大库一起收进来 ——
+# 实测 numpy 一家就占了 27 MB（numpy.libs 里的 OpenBLAS 21 MB），
+# 而本程序只用到 tkinter + pycaw，一行 numpy 都没有。
+# 排掉这些之后 onedir 从 59 MB 降到 28 MB。
+EXCLUDES = [
+    "numpy", "scipy", "pandas", "matplotlib",
+    "PIL", "pytest", "setuptools", "pip",
+    "IPython", "jupyter", "notebook",
+]
+
 
 def find_iscc():
     """ISCC.exe 可能装在 Program Files，也可能装在用户目录（winget 默认）。"""
@@ -61,10 +71,13 @@ def main():
         raise SystemExit("缺少 PyInstaller，请先安装：\n    pip install pyinstaller")
 
     print("\n[1/2] PyInstaller 打包 ...")
-    run([sys.executable, "-m", "PyInstaller", "--noconfirm", "--clean",
-         "--windowed", "--onedir", "--name", APP_NAME,
-         "--icon", os.path.join(HERE, "app_volume_icon.ico"),
-         os.path.join(HERE, "app_volume.pyw")])
+    cmd = [sys.executable, "-m", "PyInstaller", "--noconfirm", "--clean",
+           "--windowed", "--onedir", "--name", APP_NAME,
+           "--icon", os.path.join(HERE, "app_volume_icon.ico")]
+    for mod in EXCLUDES:
+        cmd += ["--exclude-module", mod]
+    cmd.append(os.path.join(HERE, "app_volume.pyw"))
+    run(cmd)
 
     exe = os.path.join(DIST, APP_NAME + ".exe")
     if not os.path.exists(exe):

@@ -4,7 +4,7 @@
 
 > Windows 上给每个程序单独调音量的轻量小工具。**单文件、一个依赖、零图片资源。**
 
-**[⬇ 下载安装包](https://github.com/gjh66699/app-volume-controller/releases/latest)** · Windows 10/11 · 18 MB · **不需要装 Python**
+**[⬇ 下载安装包](https://github.com/gjh66699/app-volume-controller/releases/latest)** · Windows 10/11 · 10 MB · **不需要装 Python**
 
 ![深色主题](docs/screenshot-dark.png)
 
