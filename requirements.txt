@@ -1,0 +1,2 @@
+# 唯一直接依赖。comtypes / psutil 由 pycaw 自动带上。
+pycaw>=20230407

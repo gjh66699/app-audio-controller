@@ -1,0 +1,9 @@
+# 统一换行：源码走 LF，Windows 批处理必须 CRLF
+* text=auto
+
+*.py   text eol=lf
+*.pyw  text eol=lf
+*.md   text eol=lf
+*.bat  text eol=crlf
+*.ico  binary
+*.png  binary
