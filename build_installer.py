@@ -35,6 +35,20 @@ EXCLUDES = [
     "numpy", "scipy", "pandas", "matplotlib",
     "PIL", "pytest", "setuptools", "pip",
     "IPython", "jupyter", "notebook",
+    # OpenSSL 全家桶 5.8 MB。这个工具不联网，用不到；
+    # 代价是以后要加「检查更新」之类的网络功能得把它加回来。
+    "ssl", "_ssl", "_hashlib",
+]
+
+# PyInstaller 会把整个 Tcl/Tk 运行时搬进来，其中有些是纯冗余：
+#   tzdata  时区数据库 2.1 MB —— 程序不碰 clock 的时区功能
+#   msgs    多语言消息 353 KB —— Tcl 侧的，Tk 自己的对话框消息另有一份
+#   images  Tk 自带的演示图 125 KB —— logo100.gif / pwrdLogo.gif 之类，纯装饰
+# 删掉后已实测：窗口正常创建、界面渲染完整。
+TRIM = [
+    os.path.join("_internal", "_tcl_data", "tzdata"),
+    os.path.join("_internal", "_tcl_data", "msgs"),
+    os.path.join("_internal", "_tk_data", "images"),
 ]
 
 
@@ -86,6 +100,13 @@ def main():
     exe = os.path.join(DIST, APP_NAME + ".exe")
     if not os.path.exists(exe):
         raise SystemExit("打包后没有找到 %s" % exe)
+
+    for rel in TRIM:
+        p = os.path.join(DIST, rel)
+        if os.path.isdir(p):
+            shutil.rmtree(p, ignore_errors=True)
+            print("    裁掉 %s" % rel)
+
     size = sum(os.path.getsize(os.path.join(dp, f))
                for dp, _, fs in os.walk(DIST) for f in fs)
     print("    产物 %s（%.0f MB）" % (DIST, size / 1024 / 1024))

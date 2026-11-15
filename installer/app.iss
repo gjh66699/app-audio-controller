@@ -8,7 +8,7 @@
 ;   {autopf} 在 lowest 模式下自动解析为 {localappdata}\Programs
 
 #define MyAppName "应用音量控制器"
-#define MyAppVersion "1.0.2"
+#define MyAppVersion "1.0.3"
 #define MyAppPublisher "gjh66699"
 #define MyAppURL "https://github.com/gjh66699/app-audio-controller"
 #define MyAppExeName "AppVolumeController.exe"
