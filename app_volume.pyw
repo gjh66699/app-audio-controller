@@ -131,6 +131,18 @@ def S(v):
     return int(round(v * SCALE))
 
 
+def resource_path(name):
+    """找到随程序分发的资源文件。
+
+    PyInstaller 打包后资源在 sys._MEIPASS（onedir 模式下就是 _internal），
+    源码运行时就在脚本所在目录。
+    """
+    base = getattr(sys, "_MEIPASS", None)
+    if not base:
+        base = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base, name)
+
+
 _TIMER_LIFTED = False
 
 
@@ -428,6 +440,7 @@ class VolumeMixer(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("应用音量控制器")
+        self._set_window_icon()
         self.geometry("%dx%d" % initial_size())
         self.minsize(S(460), S(420))
 
@@ -484,6 +497,24 @@ class VolumeMixer(tk.Tk):
     # ------------------------------------------------------------ 内存贴图
     # 扁平设计：界面只用到 _rr_img（圆角矩形）/ _knob_img（圆钮）/
     # _icon_img（应用图标）三种内存贴图，全部逐像素抗锯齿，磁盘零图片。
+    def _set_window_icon(self):
+        """给窗口装图标 —— 标题栏、任务栏、Alt+Tab 都取这里。
+
+        不设的话 Windows 会画 Tk 自带的羽毛图标，和 exe 的图标对不上。
+        ico 里是 16~256 共 10 个尺寸，Windows 按场合自己挑，
+        比 iconphoto 传一张位图清楚。
+        """
+        ico = resource_path("app_volume_icon.ico")
+        if not os.path.exists(ico):
+            return
+        try:
+            self.iconbitmap(default=ico)
+        except Exception:
+            try:
+                self.iconbitmap(ico)
+            except Exception:
+                pass
+
     def _rr_img(self, w, h, r, fill, bg, border=None, bw=1):
         """抗锯齿圆角矩形，可选 1px 描边。
 

@@ -73,7 +73,11 @@ def main():
     print("\n[1/2] PyInstaller 打包 ...")
     cmd = [sys.executable, "-m", "PyInstaller", "--noconfirm", "--clean",
            "--windowed", "--onedir", "--name", APP_NAME,
-           "--icon", os.path.join(HERE, "app_volume_icon.ico")]
+           "--icon", os.path.join(HERE, "app_volume_icon.ico"),
+           # ico 也要随包分发：运行时要用它设窗口图标（标题栏 / 任务栏），
+           # 只设 --icon 只影响 exe 文件本身的图标，不影响运行中的窗口
+           "--add-data",
+           os.path.join(HERE, "app_volume_icon.ico") + os.pathsep + "."]
     for mod in EXCLUDES:
         cmd += ["--exclude-module", mod]
     cmd.append(os.path.join(HERE, "app_volume.pyw"))
