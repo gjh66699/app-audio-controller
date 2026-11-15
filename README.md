@@ -2,6 +2,8 @@
 
 > Windows 上给每个程序单独调音量的轻量小工具。**单文件、一个依赖、零图片资源。**
 
+**[⬇ 下载安装包](https://github.com/gjh66699/app-volume-controller/releases/latest)** · Windows 10/11 · 18 MB · **不需要装 Python**
+
 ![深色主题](docs/screenshot-dark.png)
 
 <sub>浅色主题：[docs/screenshot-light.png](docs/screenshot-light.png) · 截图为演示数据</sub>
@@ -21,6 +23,9 @@ rasterised pixel-by-pixel at runtime — **no image assets, no Pillow**.
 pip install pycaw
 pythonw app_volume.pyw      # or double-click run.bat
 ```
+
+Or grab the **[installer](https://github.com/gjh66699/app-volume-controller/releases/latest)** — it bundles the
+Python runtime, so no Python installation is required.
 
 Windows 10/11 · Python 3.9+ · MIT
 
@@ -43,7 +48,16 @@ Windows 10/11 · Python 3.9+ · MIT
 
 ## 安装
 
-需要 Windows 10 或 11，Python 3.9 以上。
+### 方式一：安装包（推荐，不需要 Python）
+
+1. 从 [Releases](https://github.com/gjh66699/app-volume-controller/releases/latest) 下载 `AppVolumeController-Setup-x.y.z.exe`
+2. 双击安装
+3. 装完桌面和开始菜单都会有快捷方式
+
+安装包内嵌了 Python 运行时，**不需要另外装 Python**。装到 `%LOCALAPPDATA%\Programs\AppVolumeController`，
+不需要管理员权限；卸载走「设置 → 应用」或开始菜单里的卸载项，卸载会一并清掉安装目录和快捷方式。
+
+### 方式二：从源码运行（需要 Python 3.9+）
 
 ```bash
 git clone https://github.com/gjh66699/app-volume-controller.git
@@ -70,6 +84,19 @@ python make_shortcut.py
 ```
 
 它直接按 MS-SHLLINK 规范写 `.lnk` 二进制，不实例化任何 COM 组件；已存在同名快捷方式时不覆盖，加 `--force` 重建。
+
+> 用安装包装的话，桌面快捷方式由安装程序创建，不需要跑这个脚本。
+
+## 自己打包
+
+```bash
+pip install pyinstaller
+winget install JRSoftware.InnoSetup
+python build_installer.py
+```
+
+`build_installer.py` 会先调 PyInstaller 把程序打成 onedir 目录（含 Python 运行时），
+再用 Inno Setup 压成一个 setup.exe，产物在 `installer/Output/`。
 
 ## 技术说明
 
@@ -112,8 +139,11 @@ python app_volume.pyw --benchmark      # 重建 / 拖动 / 滚动 的单帧耗�
 
 ```
 app_volume.pyw          主程序（界面 + 音频逻辑 + 自检）
-run.bat                 启动脚本
+run.bat                 启动脚本（源码方式）
 requirements.txt        唯一依赖 pycaw
+build_installer.py      一键打包：PyInstaller + Inno Setup
+installer/app.iss       Inno Setup 安装脚本
+installer/*.isl         安装向导的简体中文语言文件
 make_icon.py            生成 logo.png / logo.svg / app_volume_icon.ico
 make_shortcut.py        在桌面创建快捷方式（手写 .lnk 二进制）
 docs/                   README 截图

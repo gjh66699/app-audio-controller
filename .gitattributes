@@ -5,5 +5,7 @@
 *.pyw  text eol=lf
 *.md   text eol=lf
 *.bat  text eol=crlf
+*.iss  text eol=crlf
+*.isl  text eol=crlf
 *.ico  binary
 *.png  binary

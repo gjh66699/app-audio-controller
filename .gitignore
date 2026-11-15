@@ -10,6 +10,12 @@ env/
 *.lnk
 *.log
 
+# 打包产物（spec 是 PyInstaller 的副产物，构建参数在 build_installer.py 里）
+build/
+dist/
+*.spec
+installer/Output/
+
 # 编辑器 / 系统
 .vscode/
 .idea/
