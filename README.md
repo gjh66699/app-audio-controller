@@ -4,7 +4,8 @@
 
 > Windows 上给每个程序单独调音量的轻量小工具。**单文件、一个依赖、零图片资源。**
 
-**[⬇ 下载安装包](https://github.com/gjh66699/app-audio-controller/releases/latest)** · Windows 10/11 · 8.5 MB · **不需要装 Python**
+**[⬇ 下载](https://github.com/gjh66699/app-audio-controller/releases/latest)** · Windows 10/11
+　·　**完整版 8.5 MB**（不需要 Python）　·　**轻量版 65 KB**（需要 Python）
 
 ![深色主题](docs/screenshot-dark.png)
 
@@ -29,16 +30,34 @@
 
 ## 安装
 
-### 方式一：安装包（推荐，不需要 Python）
+两个版本，功能完全一样，区别只在于要不要自带 Python 运行时：
+
+| | 大小 | 需要 Python | 适合 |
+|---|---|---|---|
+| **完整版** `AppVolumeController-Setup-x.y.z.exe` | 8.5 MB | 不需要 | 大多数人，双击就装好 |
+| **轻量版** `AppVolumeController-lite.zip` | **65 KB** | 需要 3.9+ | 已经装了 Python，或者在意体积 |
+
+### 完整版（推荐）
 
 1. 从 [Releases](https://github.com/gjh66699/app-audio-controller/releases/latest) 下载 `AppVolumeController-Setup-x.y.z.exe`
 2. 双击安装
 3. 装完桌面和开始菜单都会有快捷方式
 
-安装包内嵌了 Python 运行时，**不需要另外装 Python**。装到 `%LOCALAPPDATA%\Programs\AppVolumeController`，
-不需要管理员权限；卸载走「设置 → 应用」或开始菜单里的卸载项，卸载会一并清掉安装目录和快捷方式。
+内嵌了 Python 运行时，**不需要另外装 Python**。装到 `%LOCALAPPDATA%\Programs\AppVolumeController`，
+不需要管理员权限；卸载走「设置 → 应用」或开始菜单里的卸载项。
 
-### 方式二：从源码运行（需要 Python 3.9+）
+### 轻量版（65 KB）
+
+1. 下载 `AppVolumeController-lite.zip` 并解压
+2. 双击里面的 `install-lite.bat`
+3. 脚本会检查 Python、装依赖 `pycaw`、复制到安装目录、创建桌面快捷方式
+
+**前提是机器上已经有 Python 3.9+**。安装脚本会优先用官方的 `py` 启动器找 Python，
+并且保证 `pycaw` 装进**同一个解释器**（否则快捷方式会用另一个解释器启动，报 `ModuleNotFoundError`）。
+
+卸载：双击安装目录里的 `卸载.bat`。
+
+### 从源码运行（开发者）
 
 ```bash
 git clone https://github.com/gjh66699/app-audio-controller.git
@@ -121,6 +140,7 @@ python app_volume.pyw --benchmark      # 重建 / 拖动 / 滚动 的单帧耗�
 ```
 app_volume.pyw          主程序（界面 + 音频逻辑 + 自检）
 run.bat                 启动脚本（源码方式）
+install-lite.bat        轻量版安装脚本（检测 Python、装依赖、建快捷方式）
 requirements.txt        唯一依赖 pycaw
 build_installer.py      一键打包：PyInstaller + Inno Setup
 installer/app.iss       Inno Setup 安装脚本

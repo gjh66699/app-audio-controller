@@ -4,7 +4,8 @@
 
 > A lightweight per-app volume mixer for Windows. **One file, one dependency, zero image assets.**
 
-**[⬇ Download installer](https://github.com/gjh66699/app-audio-controller/releases/latest)** · Windows 10/11 · 8.5 MB · **no Python required**
+**[⬇ Download](https://github.com/gjh66699/app-audio-controller/releases/latest)** · Windows 10/11
+　·　**Full 8.5 MB** (no Python needed)　·　**Lite 65 KB** (requires Python)
 
 ![Dark theme](docs/screenshot-dark.png)
 
@@ -29,17 +30,36 @@ single thing: **make "how loud is each app" pleasant to look at and quick to adj
 
 ## Install
 
-### Option 1: Installer (recommended, no Python needed)
+Two builds, identical in behaviour — they differ only in whether the Python runtime is bundled:
+
+| | Size | Python | For |
+|---|---|---|---|
+| **Full** `AppVolumeController-Setup-x.y.z.exe` | 8.5 MB | not needed | most people, double-click and done |
+| **Lite** `AppVolumeController-lite.zip` | **65 KB** | 3.9+ required | you already have Python, or you care about size |
+
+### Full (recommended)
 
 1. Download `AppVolumeController-Setup-x.y.z.exe` from [Releases](https://github.com/gjh66699/app-audio-controller/releases/latest)
 2. Double-click it
 3. Desktop and Start menu shortcuts are created for you
 
-The installer bundles the Python runtime, so **you don't need Python installed**. It installs to
+The Python runtime is bundled, so **you don't need Python installed**. It installs to
 `%LOCALAPPDATA%\Programs\AppVolumeController` without asking for administrator rights. Uninstall
-from Settings → Apps or the Start menu entry — it removes the install directory and shortcuts too.
+from Settings → Apps or the Start menu entry.
 
-### Option 2: Run from source (Python 3.9+)
+### Lite (65 KB)
+
+1. Download `AppVolumeController-lite.zip` and extract it
+2. Double-click `install-lite.bat`
+3. The script checks for Python, installs `pycaw`, copies files into place and creates a desktop shortcut
+
+**Requires Python 3.9+ already installed.** The script prefers the official `py` launcher and makes
+sure `pycaw` lands in the **same interpreter** — otherwise the shortcut launches a different one and
+fails with `ModuleNotFoundError`.
+
+To uninstall, run `卸载.bat` in the install directory.
+
+### Run from source (developers)
 
 ```bash
 git clone https://github.com/gjh66699/app-audio-controller.git
