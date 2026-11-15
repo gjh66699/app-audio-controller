@@ -1,4 +1,4 @@
-# 应用音量控制器 · App Volume Controller
+# 应用音量控制器
 
 > Windows 上给每个程序单独调音量的轻量小工具。**单文件、一个依赖、零图片资源。**
 
@@ -7,27 +7,6 @@
 ![深色主题](docs/screenshot-dark.png)
 
 <sub>浅色主题：[docs/screenshot-light.png](docs/screenshot-light.png) · 截图为演示数据</sub>
-
----
-
-## English
-
-A tiny per-app volume mixer for Windows, built with nothing but Python and Tkinter.
-
-Windows' built-in volume mixer works, but its UI hasn't moved on since Windows 7. This is a
-single-file rewrite in a Raycast-style command palette: a hairline-bordered panel, four surface
-levels for depth (no shadows), one accent colour, and every rounded corner, slider knob and icon
-rasterised pixel-by-pixel at runtime — **no image assets, no Pillow**.
-
-```bash
-pip install pycaw
-pythonw app_volume.pyw      # or double-click run.bat
-```
-
-Or grab the **[installer](https://github.com/gjh66699/app-volume-controller/releases/latest)** — it bundles the
-Python runtime, so no Python installation is required.
-
-Windows 10/11 · Python 3.9+ · MIT
 
 ---
 
