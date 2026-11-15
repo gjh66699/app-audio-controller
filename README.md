@@ -1,5 +1,7 @@
 # 应用音量控制器
 
+**简体中文** · [English](README.en.md)
+
 > Windows 上给每个程序单独调音量的轻量小工具。**单文件、一个依赖、零图片资源。**
 
 **[⬇ 下载安装包](https://github.com/gjh66699/app-volume-controller/releases/latest)** · Windows 10/11 · 18 MB · **不需要装 Python**
@@ -127,6 +129,7 @@ make_icon.py            生成 logo.png / logo.svg / app_volume_icon.ico
 make_shortcut.py        在桌面创建快捷方式（手写 .lnk 二进制）
 docs/                   README 截图
 logo.svg                矢量标识
+README.en.md            英文版说明
 ```
 
 `make_icon.py` 里的小尺寸是有光学修正的：16/20/24px 下把竖条加粗、间距收窄，否则按比例
